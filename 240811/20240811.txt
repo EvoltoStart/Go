@@ -1,0 +1,6 @@
+1、改动程序parallel_demo/main.go，使得select能从无限的for循环当中跳出
+2、两个goruntine，交替打印出26个字母
+3、两个goruntine，Agoruntine打印0到50，Bgoruntine51到100
+4、golang打印99乘法表
+5、启动三个协程，每个协程分别打印A、B、C,每个协程打印5遍，打印顺序为ABCABC....
+6、假设火车站有三个窗口同时卖票，设计程序模拟同时卖票的场景（每个协程分别代表一个窗口）

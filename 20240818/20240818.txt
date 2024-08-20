@@ -1,0 +1,28 @@
+关于waitGroup的最佳使用方式：先统一调用Add方法决定有多少个协程同时工作，再通过协程并发的去做Done的动作，
+                          告诉waitGroup什么时刻完成了该协程的任务，最后，再最外层（多数情况下是主协程或者父级协程）进行wait来等待其他协程完成自己的任务
+
+
+
+并发级别：sync.Map 的读写操作都是内部锁定的，而 ConcurrentHashMap 的读操作是不加锁的，写操作是在特定的段上加锁。因此，ConcurrentHashMap 的并发度更高。
+
+迭代方式：sync.Map 在迭代时需要加锁，而 ConcurrentHashMap 迭代过程中不需要加锁。
+
+初始化大小：sync.Map 在初始化时是空的，而 ConcurrentHashMap 可以初始化时指定大小。
+
+加载因子：ConcurrentHashMap 可以在初始化时指定加载因子来优化空间使用，而 sync.Map 没有这个选项。
+
+键值对的插入和删除：sync.Map 不支持原子地删除所有的键值对，而 ConcurrentHashMap 支持。
+
+在/etc/profile文件中加入：
+export GOPROXY=https://proxy.golang.com.cn,direct
+然后在gomod项目中，执行如下语句，进行mysql-driver的安装：
+go get -u github.com/go-sql-driver/mysql
+
+
+java当中的线程池的创建元素：
+核心线程数、最大线程数、线程等待时间，任务等待队列，拒绝策略
+作业1：根据java中线程池的实现原理，在golang中实现一个协程池
+作业2：使用golang的tcp服务端和客户端程序，写一个可以多人在线的1对1聊天程序
+（1、如何存储在线用户，2、如何让在线用户知道当前有哪些用户可以被选择为聊天对象，
+3、如何将消息从A用户转发到B用户）
+作业3：在作业2的基础上，将用户聊天记录保存到mysql数据库中（必选字段：发起聊天用户名、聊天内容、接收聊天用户名，创建时间）
